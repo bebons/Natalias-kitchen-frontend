@@ -1,0 +1,161 @@
+[
+  {
+    "_id": 1,
+    "title": "Sweet Pancake",
+    "description": "Pancakes are thin, soft cakes typically made from a batter of flour, eggs, milk, sugar, and baking powder. They are cooked on a skillet or griddle and can be served sweet or savory. Common toppings include syrup, fruit, jam, Nutella, or whipped cream, depending on preference. Pancakes are popular in many countries and are often eaten for breakfast or as a snack.",
+    "category": "desert",
+    "trending": true,
+    "coverImage": "food-1.png",
+    "oldPrice": 2.99,
+    "newPrice": 1.99,
+    "options": {
+      "fillings": [
+        { "name": "Apricot-Jam", "price": 0.99 },
+        { "name": "Strawberry-Jam", "price": 0.99 },
+        { "name": "Nutella", "price": 1.29 }
+      ],
+      "toppings": [
+        { "name": "Plazma biscuit", "price": 0.79 },
+        { "name": "Wholenuts", "price": 0.79 },
+        { "name": "Whipped Cream", "price": 0.79 },
+        { "name": "Fruit", "price": 0.49 },
+        { "name": "Maple-Syrup", "price": 0.99 }
+      ]
+    }
+  },
+  {
+    "_id": 2,
+    "title": "Fried Chicken",
+    "description": "Fried (breaded) food refers to dishes where ingredients, usually meat, fish, or vegetables, are coated in a batter or breadcrumbs and then deep-fried or pan-fried. The breading creates a crispy, golden outer layer while keeping the inside moist and tender. Popular examples include fried chicken, breaded fish fillets, and fried vegetables like zucchini or mushrooms. The coating typically consists of flour, eggs, and breadcrumbs, sometimes with additional seasonings for flavor.",
+    "category": "meal",
+    "trending": true,
+    "coverImage": "food-2.png",
+    "oldPrice": 7.99,
+    "newPrice": 6.99
+  },
+  {
+    "_id": 3,
+    "title": "Baklava",
+    "description": "Baklava is a rich, sweet pastry made of layers of filo dough filled with chopped nuts and sweetened with honey or syrup. This dessert is popular in Middle Eastern and Balkan cuisines.",
+    "category": "desert",
+    "trending": true,
+    "coverImage": "food-3.png",
+    "oldPrice": 4.99,
+    "newPrice": 3.99
+  },
+  {
+    "_id": 4,
+    "title": "Cheesecake",
+    "description": "Cheesecake is a creamy dessert made from a mixture of cream cheese, eggs, sugar, and a crust, often topped with fruits, chocolate, or caramel. It can be served chilled or baked.",
+    "category": "desert",
+    "trending": false,
+    "coverImage": "food-4.png",
+    "oldPrice": 5.99,
+    "newPrice": 4.99,
+    "options": {
+      "toppings": [
+        { "name": "Strawberry Topping", "price": 1.49 },
+        { "name": "Cherry Topping", "price": 1.49 },
+        { "name": "Fresh Berries", "price": 1.0 }
+      ]
+    }
+  },
+  {
+    "_id": 5,
+    "title": "Snickers cake",
+    "description": "Snickers is a chocolate bar made of nougat, caramel, and peanuts, all coated in milk chocolate. It's a satisfying snack that is both sweet and salty.",
+    "category": "desert",
+    "trending": true,
+    "coverImage": "food-5.png",
+    "oldPrice": 4.49,
+    "newPrice": 3.99
+  },
+  {
+    "_id": 6,
+    "title": "Elderflower Juice",
+    "description": "Elderflower juice is a refreshing, lightly sweetened drink made from elderflowers, sugar, and lemon. It is popular in many European countries, especially in the summer.",
+    "category": "beverage",
+    "trending": false,
+    "coverImage": "food-6.png",
+    "oldPrice": 2.99,
+    "newPrice": 1.49
+  },
+  {
+    "_id": 7,
+    "title": "Lemonade",
+    "description": "Lemonade is a sweetened beverage made from lemon juice, water, and sugar. It's a classic summer drink that is both refreshing and tangy.",
+    "category": "beverage",
+    "trending": true,
+    "coverImage": "food-7.png",
+    "oldPrice": 2.99,
+    "newPrice": 1.99
+  },
+  {
+    "_id": 8,
+    "title": "Beef Stew",
+    "description": "Beef stew is a hearty dish made by slow-cooking chunks of beef, vegetables, and broth until the meat is tender and the flavors are well combined.",
+    "category": "meal",
+    "trending": true,
+    "coverImage": "food-8.png",
+    "oldPrice": 7.99,
+    "newPrice": 5.99
+  },
+  {
+    "_id": 9,
+    "title": "Risotto",
+    "description": "Risotto is an Italian dish made by cooking rice in a broth until it becomes creamy. It can be flavored with various ingredients such as mushrooms, seafood, or vegetables.",
+    "category": "meal",
+    "trending": false,
+    "coverImage": "food-9.png",
+    "oldPrice": 7.99,
+    "newPrice": 5.99
+  },
+  {
+    "_id": 10,
+    "title": "Water",
+    "description": "Water is great after deserts or heavy meals, you will be thirsty...",
+    "category": "beverage",
+    "trending": false,
+    "coverImage": "food-10.png",
+    "oldPrice": 1.99,
+    "newPrice": 0.99
+  },
+  {
+    "_id": 11,
+    "title": "Sarma",
+    "description": "Sarma is a traditional dish from the Balkan region, consisting of fermented cabbage (or grape leaves) wrapped around a filling made of minced meat (usually pork and beef), rice, spices, and sometimes vegetables. It is typically cooked slowly in a pot with the addition of spices like black pepper and bay leaves, and often served with broth or sour cream. Sarma is a popular dish for holiday gatherings and is considered a symbol of family tradition and communal meals.",
+    "category": "meal",
+    "trending": false,
+    "coverImage": "food-11.png",
+    "oldPrice": 7.99,
+    "newPrice": 6.99
+  },
+  {
+    "_id": 12,
+    "title": "Savory Pancake",
+    "description": "Savory pancakes are typically filled with meats, cheeses, or vegetables and can be served with a variety of savory toppings like sour cream or herbs.",
+    "category": "meal",
+    "trending": true,
+    "coverImage": "food-12.png",
+    "oldPrice": 2.99,
+    "newPrice": 1.99,
+    "options": {
+      "fillings": [
+        { "name": "Cheese", "price": 1.49 },
+        { "name": "Ham", "price": 1.99 },
+        { "name": "Mushrooms", "price": 1.29 },
+        { "name": "Spinach", "price": 0.99 }
+      ],
+      "toppings": [
+        { "name": "Sour Cream", "price": 0.99 },
+        { "name": "Herbs", "price": 0.79 },
+        { "name": "Bacon", "price": 1.49 }
+      ],
+      "spices": [
+        { "name": "Pepper", "price": 0.2 },
+        { "name": "Paprika", "price": 0.3 },
+        { "name": "Garlic Powder", "price": 0.5 }
+      ]
+    }
+  }
+]
