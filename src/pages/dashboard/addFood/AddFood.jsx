@@ -5,7 +5,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useAddFoodMutation } from "../../../redux/features/food/foodApi";
 import axios from "axios";
-import getBaseUrl from "@/utils/baseURL";
+import getBaseUrl from "../../../utils/baseUrl";
 
 export const AddFood = () => {
   const {

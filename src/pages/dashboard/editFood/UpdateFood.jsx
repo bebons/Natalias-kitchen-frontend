@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import Swal from "sweetalert2";
 import axios from "axios";
-import getBaseUrl from "@/utils/baseURL";
+import getBaseUrl from "../../../utils/baseUrl";
 import {
   useFetchFoodByIdQuery,
   useUpdateFoodMutation,
