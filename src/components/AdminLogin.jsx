@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import getBaseUrl from "../utils/baseURL";
+import getBaseUrl from "../utils/baseUrl";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
