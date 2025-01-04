@@ -44,7 +44,7 @@ export const Navbar = () => {
       });
       if (result.isConfirmed) {
         const response = await fetch(
-          `http://localhost:5000/delete-user/${currentUser.uid}`,
+          `https://vercel.com/bebons-projects/natalias-kitchen-backend/delete-user/${currentUser.uid}`,
           {
             method: "DELETE",
           }

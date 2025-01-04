@@ -19,7 +19,8 @@ export const Register = () => {
   const onSubmit = async (data) => {
     try {
       // Register the user
-      const url = "http://localhost:5000/api/auth/register";
+      const url =
+        "https://vercel.com/bebons-projects/natalias-kitchen-backend/api/auth/register";
       const response = await axios.post(url, {
         email: data.email, // Ensure this matches the expected field name
       });
