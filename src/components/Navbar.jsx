@@ -123,14 +123,14 @@ export const Navbar = () => {
                           Log Out
                         </button>
                       </li>
-                      <li>
+                      {/* <li>
                         <button
                           onClick={handleDeleteUser}
                           className="block px-4 py-2 text-sm hover:bg-gray-50"
                         >
                           Delete Account
                         </button>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 )}
