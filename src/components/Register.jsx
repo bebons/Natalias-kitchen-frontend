@@ -20,7 +20,7 @@ export const Register = () => {
     try {
       // Register the user
       const url =
-        "https://vercel.com/bebons-projects/natalias-kitchen-backend/api/auth/register";
+        "https://natalias-kitchen-backend.vercel.app/api/auth/register";
       const response = await axios.post(url, {
         email: data.email, // Ensure this matches the expected field name
       });

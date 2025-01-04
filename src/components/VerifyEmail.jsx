@@ -19,7 +19,7 @@ export const VerifyEmail = () => {
     const verifyUserEmail = async () => {
       try {
         const response = await axios.get(
-          `https://vercel.com/bebons-projects/natalias-kitchen-backend/api/auth/verify/${token}`
+          `https://natalias-kitchen-backend.vercel.app/api/auth/verify/${token}`
         );
         setEmail(response.data.email); // Extract email from response
 
@@ -52,7 +52,7 @@ export const VerifyEmail = () => {
         return;
       }
       await axios.post(
-        `https://vercel.com/bebons-projects/natalias-kitchen-backend/api/auth/finish-registration/${token}`
+        `https://natalias-kitchen-backend.vercel.app/api/auth/finish-registration/${token}`
       );
 
       await registerUser(email, data.password); //pravi usera u firebase
