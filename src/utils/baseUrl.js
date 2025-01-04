@@ -1,4 +1,4 @@
 const getBaseUrl = () => {
-  return "https://natalias-kitchen-backend.vercel.app";
+  return "http://localhost:5000";
 };
 export default getBaseUrl;

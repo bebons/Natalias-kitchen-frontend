@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import avatarImg from "../assets/avatar.png";
 import { useSelector } from "react-redux";
 import { selectCartTotalItems } from "../redux/features/cart/cartSlice";
+import Swal from "sweetalert2";
 
 const navigation = [
   {
@@ -33,28 +34,45 @@ export const Navbar = () => {
   };
 
   const handleDeleteUser = async () => {
-    if (currentUser) {
-      try {
+    try {
+      const result = await Swal.fire({
+        icon: "warning",
+        title: "Delete account",
+        text: "Your account will be gone",
+        showConfirmButton: true,
+        showCancelButton: true,
+      });
+      if (result.isConfirmed) {
         const response = await fetch(
-          `http://localhost:3000/delete-user/${currentUser.uid}`,
+          `http://localhost:5000/delete-user/${currentUser.uid}`,
           {
             method: "DELETE",
           }
         );
-
         if (response.ok) {
-          alert("Korisnik je uspešno obrisan.");
+          Swal.fire({
+            icon: "info",
+            title: "Deleted account",
+            text: "Your account is gone",
+            showConfirmButton: false,
+            showCancelButton: false,
+            timer: 2000,
+          });
           logout(); // Log out the user after successful deletion
         } else {
-          alert("Greška pri brisanju korisnika.");
+          Swal.fire({
+            icon: "warning",
+            title: "Account NOT deleted",
+            text: "Your account ISNT gone, error occurred",
+            showConfirmButton: false,
+            showCancelButton: false,
+            timer: 2000,
+          });
         }
-      } catch (error) {
-        console.error(
-          "Greška pri slanju zahteva za brisanje korisnika:",
-          error
-        );
-        alert("Došlo je do greške. Pokušaj ponovo.");
       }
+    } catch (error) {
+      console.error("Greška pri slanju zahteva za brisanje korisnika:", error);
+      alert("Došlo je do greške. Pokušaj ponovo.");
     }
   };
 
@@ -105,14 +123,14 @@ export const Navbar = () => {
                           Log Out
                         </button>
                       </li>
-                      {/* <li>
+                      <li>
                         <button
                           onClick={handleDeleteUser}
                           className="block px-4 py-2 text-sm hover:bg-gray-50"
                         >
                           Delete Account
                         </button>
-                      </li> */}
+                      </li>
                     </ul>
                   </div>
                 )}

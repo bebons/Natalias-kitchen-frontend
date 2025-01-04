@@ -2,7 +2,6 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
-  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -20,23 +19,8 @@ export const AuthProvide = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const registerUser = async (email, password) => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-
-      await sendEmailVerification(user);
-
-      return userCredential;
-    } catch (error) {
-      console.error("Error registering user:", error);
-      throw error;
-    }
+    return await createUserWithEmailAndPassword(auth, email, password);
   };
-
   const loginUser = async (email, password) => {
     return await signInWithEmailAndPassword(auth, email, password);
   };
@@ -48,19 +32,12 @@ export const AuthProvide = ({ children }) => {
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
       setLoading(false);
-      if (user) {
-        const { email, displayName, photoURL } = user;
-        const userData = {
-          email,
-          username: displayName,
-          photo: photoURL,
-        };
-      }
+      setCurrentUser(user); // Otherwise, set the user as authenticated
     });
     return () => unsubscribe();
   }, []);
+
   const value = {
     currentUser,
     loading,

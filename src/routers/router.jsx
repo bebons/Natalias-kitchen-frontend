@@ -16,6 +16,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminLogin from "../components/AdminLogin";
 import { UpdateFood } from "../pages/dashboard/editFood/UpdateFood";
 import { CompleteFood } from "../pages/food/CompleteFood";
+import { VerifyEmail } from "../components/VerifyEmail";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/food/:id",
         element: <CompleteFood />,
+      },
+      {
+        path: "/verify/:token",
+        element: <VerifyEmail />,
       },
     ],
   },

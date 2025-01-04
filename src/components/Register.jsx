@@ -4,11 +4,11 @@ import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
-import { sendEmailVerification } from "firebase/auth";
+import axios from "axios";
 
 export const Register = () => {
   const [message, setMessage] = useState("");
-  const { registerUser, signInWithGoogle } = useAuth();
+  const { signInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -18,22 +18,25 @@ export const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      // Register the user and get the response from Firebase
-      const userCredential = await registerUser(data.email, data.password);
-      const user = userCredential.user;
-
-      // Notify the user
+      // Register the user
+      const url = "http://localhost:5000/api/auth/register";
+      const response = await axios.post(url, {
+        email: data.email, // Ensure this matches the expected field name
+      });
       Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: "Registration successful. Please check your email to verify your account.",
-        timer: 1000,
+        icon: "info",
+        title: "Verify Your Email",
+        text: "A verification email has been sent. Please verify your email before proceeding.",
+        timer: 2000,
         showConfirmButton: false,
       });
 
-      navigate("/"); // Redirect to home page (or a different page)
+      // await registerUser(data.email, data.password);
+
+      // Redirect back to the login page or inform them to verify
+      navigate("/");
     } catch (err) {
-      setMessage("Please provide a valid email and password");
+      setMessage("Failed to register.");
       console.error("Error during registration:", err);
     }
   };
@@ -77,22 +80,6 @@ export const Register = () => {
               name="email"
               id="email"
               placeholder="Email Address"
-              className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              {...register("password", { required: true })}
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
             />
           </div>
