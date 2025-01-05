@@ -17,6 +17,9 @@ import AdminLogin from "../components/AdminLogin";
 import { UpdateFood } from "../pages/dashboard/editFood/UpdateFood";
 import { CompleteFood } from "../pages/food/CompleteFood";
 import { VerifyEmail } from "../components/VerifyEmail";
+import ForgotPassword from "../components/ForgotPassword";
+import AccountSettings from "../myAccount/AccountSettings";
+import UpdatePassword from "../myAccount/UpdatePassword";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +65,26 @@ const router = createBrowserRouter([
       {
         path: "/verify/:token",
         element: <VerifyEmail />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/my-account",
+        element: (
+          <PrivateRoute>
+            <AccountSettings />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-password",
+        element: (
+          <PrivateRoute>
+            <UpdatePassword />
+          </PrivateRoute>
+        ),
       },
     ],
   },

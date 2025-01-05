@@ -62,6 +62,9 @@ export const UpdateFood = () => {
       setToppings(foodData.options.toppings || [{ name: "", price: "" }]);
       setSpices(foodData.options.spices || [{ name: "", price: "" }]);
       setImageFileName(foodData.coverImage || "");
+      console.log("Initial fillings:", foodData.options.fillings);
+      console.log("Initial toppings:", foodData.options.toppings);
+      console.log("Initial spices:", foodData.options.spices);
     }
   }, [foodData, setValue]);
 
@@ -70,20 +73,24 @@ export const UpdateFood = () => {
       const updatedFillings = [...fillings];
       updatedFillings[index][field] = value;
       setFillings(updatedFillings);
+      console.log("Updated fillings:", updatedFillings);
     }
     if (type === "toppings") {
       const updatedToppings = [...toppings];
       updatedToppings[index][field] = value;
       setToppings(updatedToppings);
+      console.log("Updated toppings:", updatedToppings);
     }
     if (type === "spices") {
       const updatedSpices = [...spices];
       updatedSpices[index][field] = value;
       setSpices(updatedSpices);
+      console.log("Updated spices:", updatedSpices);
     }
   };
 
   const onSubmit = async (data) => {
+    console.log("Before filtering - Fillings:", fillings);
     const filteredFillings = fillings.filter(
       (filling) => filling.name.trim() && filling.price
     );
@@ -93,6 +100,9 @@ export const UpdateFood = () => {
     const filteredSpices = spices.filter(
       (spice) => spice.name.trim() && spice.price
     );
+    console.log("Fillings:", filteredFillings);
+    console.log("Toppings:", filteredToppings);
+    console.log("Spices:", filteredSpices);
     try {
       let imageUrl = imageFileName;
 

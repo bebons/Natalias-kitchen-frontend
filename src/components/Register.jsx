@@ -32,8 +32,6 @@ export const Register = () => {
         showConfirmButton: false,
       });
 
-      // await registerUser(data.email, data.password);
-
       // Redirect back to the login page or inform them to verify
       navigate("/");
     } catch (err) {

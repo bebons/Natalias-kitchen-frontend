@@ -93,6 +93,23 @@ export const Login = () => {
               <p className="text-red-500 text-xs italic mb-3">{message}</p>
             )}
           </div>
+          {/*forgot password */}
+          <div>
+            {message && (
+              <>
+                <p className="align-baseline font-medium mt-4 text-sm">
+                  Forgot your password?{" "}
+                  <Link
+                    to="/forgot-password"
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    Click here to reset.
+                  </Link>
+                </p>
+              </>
+            )}
+          </div>
+          <br />
           <div>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline">
               Log in
@@ -105,6 +122,7 @@ export const Login = () => {
             Register here
           </Link>
         </p>
+
         {/*google sigin in*/}
         <div className="mt-4">
           <button

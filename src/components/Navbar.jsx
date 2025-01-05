@@ -11,16 +11,16 @@ import Swal from "sweetalert2";
 
 const navigation = [
   {
-    name: "Orders",
-    href: "/orders",
-  },
-  {
     name: "Cart Page",
     href: "/cart",
   },
   {
     name: "Checkout",
     href: "/checkout",
+  },
+  {
+    name: "My Account",
+    href: "/my-account",
   },
 ];
 
@@ -118,7 +118,7 @@ export const Navbar = () => {
                       <li>
                         <button
                           onClick={handleLogOut}
-                          className="block px-4 py-2 text-sm hover:bg-gray-50"
+                          className="block px-4 py-2 text-sm text-red-700 font-bold"
                         >
                           Log Out
                         </button>

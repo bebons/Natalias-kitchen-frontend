@@ -1,54 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import Swal from "sweetalert2";
+import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-export const VerifyEmail = () => {
-  const { registerUser } = useAuth();
-  const { token } = useParams();
+const UpdatePassword = () => {
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  useEffect(() => {
-    const verifyUserEmail = async () => {
-      try {
-        const response = await axios.get(
-          `https://natalias-kitchen-backend.vercel.app/api/auth/verify/${token}`
-        );
-        setEmail(response.data.email);
-
-        Swal.fire({
-          icon: "success",
-          title: "Email Verified",
-          text: response.data.message,
-          timer: 2000,
-          showConfirmButton: false,
-        });
-      } catch (error) {
-        const errorMessage =
-          error.response?.data?.message || "Email verification failed.";
-        Swal.fire({
-          icon: "error",
-          title: "Verification Failed",
-          text: errorMessage,
-        });
-        setMessage(errorMessage);
-      }
-    };
-
-    verifyUserEmail();
-  }, [token]);
+  const { updateUserPassword, reauthenticateUser } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [message, setMessage] = useState("");
 
   const onSubmit = async (data) => {
     try {
@@ -60,30 +26,56 @@ export const VerifyEmail = () => {
         setMessage("Passwords do not match.");
         return;
       }
-      await axios.post(
-        `https://natalias-kitchen-backend.vercel.app/api/auth/finish-registration/${token}`
-      );
 
-      await registerUser(email, data.password);
+      await updateUserPassword(data.password);
 
       Swal.fire({
         icon: "success",
-        title: "Account Created",
-        text: "Your account has been created successfully.",
-        timer: 2000,
+        title: "Password updated",
+        text: "Your account has been updated successfully.",
+        timer: 3000,
         showConfirmButton: false,
       });
       navigate("/");
     } catch (err) {
-      setMessage("Failed to register.");
-      console.error("Error during registration:", err);
+      if (err.code === "auth/requires-recent-login") {
+        // Handle reauthentication
+        try {
+          const email = prompt("Enter your email to reauthenticate:");
+          const password = prompt("Enter your password to reauthenticate:");
+
+          if (email && password) {
+            await reauthenticateUser(email, password);
+            await updateUserPassword(data.password);
+
+            Swal.fire({
+              icon: "success",
+              title: "Password updated",
+              text: "Your account has been updated successfully.",
+              timer: 3000,
+              showConfirmButton: false,
+            });
+            navigate("/");
+          } else {
+            setMessage("Reauthentication canceled.");
+          }
+        } catch (reauthErr) {
+          console.error("Reauthentication failed:", reauthErr);
+          setMessage("Failed to reauthenticate. Please try again.");
+        }
+      } else {
+        setMessage("Failed to update password. Please try again.");
+      }
+      console.error("Error during update:", err);
     }
   };
 
   return (
     <div className="h-[calc(100vh-120px)] flex justify-center items-center">
       <div className="w-full max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-xl font-semibold mb-4">Type in your password</h2>
+        <h2 className="text-xl font-semibold mb-4">
+          Type in your new password
+        </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4 relative">
             <input
@@ -91,7 +83,7 @@ export const VerifyEmail = () => {
               type={showPassword ? "text" : "password"} // Toggles between password and text
               name="password"
               id="password"
-              placeholder="lil_half_king"
+              placeholder="some_new_shit"
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
             />
             <button
@@ -108,7 +100,7 @@ export const VerifyEmail = () => {
               type={showConfirmPassword ? "text" : "password"} // Toggles between password and text
               name="confirmPassword"
               id="confirmPassword"
-              placeholder="Type that again"
+              placeholder="type_that_shit_again"
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
             />
             <button
@@ -134,3 +126,5 @@ export const VerifyEmail = () => {
     </div>
   );
 };
+
+export default UpdatePassword;

@@ -31,7 +31,7 @@ const AdminLogin = () => {
           title: "Session Expired",
           text: "Token has been expired, please log in again",
         });
-        navigate("/");
+        navigate("/admin");
       }
     }
   }, [navigate]);
