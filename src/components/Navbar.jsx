@@ -42,7 +42,7 @@ export const Navbar = () => {
       if (!token) return; // Ako nema tokena, nemoj pokušavati da učitaš sliku
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/auth/get-profile-image", // URL za učitavanje slike
+          "https://natalias-kitchen-backend.vercel.app/api/auth/get-profile-image", // URL za učitavanje slike
           {
             headers: {
               Authorization: `Bearer ${token}`, // Dodaj token u zaglavlje
@@ -52,7 +52,7 @@ export const Navbar = () => {
 
         if (response.data && response.data.profilePicture) {
           setImageIcon(
-            `http://localhost:5000${response.data.profilePicture}` // Formiranje URL-a za sliku
+            `https://natalias-kitchen-backend.vercel.app${response.data.profilePicture}` // Formiranje URL-a za sliku
           );
         } else {
           setImageIcon(avatarImg); // Ako nema slike, koristi podrazumevanu sliku

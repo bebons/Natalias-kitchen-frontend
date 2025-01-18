@@ -166,7 +166,7 @@ const GroupChat = () => {
       if (socket && currentUser) {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/messages/get-group-messages`,
+            `https://natalias-kitchen-backend.vercel.app/api/messages/get-group-messages`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("userToken")}`,
@@ -208,7 +208,7 @@ const GroupChat = () => {
             setTimeout(async () => {
               try {
                 const response = await axios.get(
-                  `http://localhost:5000/api/messages/get-group-messages`,
+                  `https://natalias-kitchen-backend.vercel.app/api/messages/get-group-messages`,
                   {
                     headers: {
                       Authorization: `Bearer ${localStorage.getItem(
@@ -265,7 +265,7 @@ const GroupChat = () => {
         try {
           console.log(111);
           const response = await axios.get(
-            `http://localhost:5000/api/messages/get-group-messages`,
+            `https://natalias-kitchen-backend.vercel.app/api/messages/get-group-messages`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("userToken")}`,

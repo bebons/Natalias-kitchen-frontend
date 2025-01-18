@@ -141,7 +141,7 @@ const UserChat = () => {
       if (selectedUser && socket && currentUser) {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/messages/get/${selectedUser._id}`,
+            `https://natalias-kitchen-backend.vercel.app/api/messages/get/${selectedUser._id}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("userToken")}`,
@@ -249,7 +249,7 @@ const UserChat = () => {
             setTimeout(async () => {
               try {
                 const response = await axios.get(
-                  `http://localhost:5000/api/messages/get/${selectedUser._id}`,
+                  `https://natalias-kitchen-backend.vercel.app/api/messages/get/${selectedUser._id}`,
                   {
                     headers: {
                       Authorization: `Bearer ${localStorage.getItem(
@@ -348,7 +348,7 @@ const UserChat = () => {
     const fetchUnreadMessagesCount = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/messages/unread`,
+          `https://natalias-kitchen-backend.vercel.app/api/messages/unread`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("userToken")}`,
@@ -473,7 +473,7 @@ const UserChat = () => {
 
       // Send a DELETE request to the server
       const response = await axios.delete(
-        `http://localhost:5000/api/messages/delete-message/${message._id}`, // Assuming the message object has an _id property
+        `https://natalias-kitchen-backend.vercel.app/api/messages/delete-message/${message._id}`, // Assuming the message object has an _id property
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`, // Include token if required

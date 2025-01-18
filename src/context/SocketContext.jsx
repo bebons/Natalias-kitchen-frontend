@@ -55,7 +55,7 @@ export const SocketProvider = ({ children }) => {
     if (!userId || !currentUser) return;
 
     const token = localStorage.getItem("userToken");
-    socketRef.current = io("http://localhost:5000", {
+    socketRef.current = io("https://natalias-kitchen-backend.vercel.app", {
       query: { userId }, // Send userId to the server
       auth: { token },
     });

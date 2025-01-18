@@ -7,7 +7,7 @@ const EditAccount = () => {
   const { deleteAccount, reauthenticateUser } = useAuth();
 
   const handleDeactivateAccount = async () => {
-    const url = `http://localhost:5000/api/auth/delete-user`;
+    const url = `https://natalias-kitchen-backend.vercel.app/api/auth/delete-user`;
 
     const result = await Swal.fire({
       title: "Are you sure?",

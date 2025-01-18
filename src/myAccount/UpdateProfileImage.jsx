@@ -18,7 +18,7 @@ const UpdateProfileImage = () => {
     const fetchProfileImage = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/auth/get-profile-image", // URL za učitavanje slike
+          "https://natalias-kitchen-backend.vercel.app/api/auth/get-profile-image", // URL za učitavanje slike
           {
             headers: {
               Authorization: `Bearer ${token}`, // Dodaj token u zaglavlje
@@ -29,7 +29,7 @@ const UpdateProfileImage = () => {
         if (response.data && response.data.profilePicture) {
           console.log(response.data.profilePicture);
           setImagePreview(
-            `http://localhost:5000${response.data.profilePicture}` // Formiranje kompletnog URL-a
+            `https://natalias-kitchen-backend.vercel.app/${response.data.profilePicture}` // Formiranje kompletnog URL-a
           );
         } else {
           setImagePreview(defaultAvatar); // Ako nema slike, koristi podrazumevanu
@@ -76,7 +76,7 @@ const UpdateProfileImage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/update-image", // URL za ažuriranje slike
+        "https://natalias-kitchen-backend.vercel.app/api/auth/update-image", // URL za ažuriranje slike
         formData,
         {
           headers: {

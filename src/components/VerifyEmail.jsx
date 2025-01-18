@@ -24,7 +24,7 @@ export const VerifyEmail = () => {
     const verifyUserEmail = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/auth/verify/${token}`
+          `https://natalias-kitchen-backend.vercel.app/api/auth/verify/${token}`
         );
         setEmail(response.data.email);
 
@@ -61,7 +61,7 @@ export const VerifyEmail = () => {
         return;
       }
       await axios.post(
-        `http://localhost:5000/api/auth/finish-registration/${token}`
+        `https://natalias-kitchen-backend.vercel.app/api/auth/finish-registration/${token}`
       );
 
       await registerUser(email, data.password);

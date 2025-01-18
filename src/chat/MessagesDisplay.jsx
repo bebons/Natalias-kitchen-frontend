@@ -14,7 +14,7 @@ const MessagesDisplay = ({
   const handleClick = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/messages/get-single-message/${id}`,
+        `https://natalias-kitchen-backend.vercel.app/api/messages/get-single-message/${id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`, // Zamenite yourToken vašim stvarnim tokenom
