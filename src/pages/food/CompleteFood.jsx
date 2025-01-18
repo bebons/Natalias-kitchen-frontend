@@ -43,7 +43,7 @@ export const CompleteFood = () => {
       title: "Added to Cart!",
       text: `${product.title} has been added to your cart.`,
       icon: "success",
-      confirmButtonText: "OK",
+      showConfirmButton: false,
       timer: 2000,
       timerProgressBar: true,
     });

@@ -1,15 +1,22 @@
 import React from "react";
-import { useGetOrderByEmailQuery } from "../../redux/features/orders/ordersApi";
-import { useAuth } from "../../context/AuthContext";
+import { useGetOrderByEmailQuery } from "../redux/features/orders/ordersApi";
+import { useAuth } from "../context/AuthContext";
+import { useSelector } from "react-redux";
 
 export const OrderPage = () => {
   const { currentUser } = useAuth();
+  const token = localStorage.getItem("userToken"); // Pronađi token iz Redux stanja
 
   const {
     data: orders = [],
     isLoading,
     isError,
-  } = useGetOrderByEmailQuery(currentUser.email);
+  } = useGetOrderByEmailQuery(currentUser.email, {
+    // Dodaj token u zaglavlje
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error getting orders data</div>;

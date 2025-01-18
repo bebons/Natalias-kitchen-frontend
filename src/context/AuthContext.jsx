@@ -9,7 +9,9 @@ import {
   updatePassword, // Dodano updatePassword
   deleteUser,
   reauthenticateWithCredential,
-  EmailAuthProvider, // Dodano deleteUser
+  EmailAuthProvider,
+  setPersistence,
+  browserLocalPersistence, // Dodano deleteUser
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
@@ -30,7 +32,20 @@ export const AuthProvide = ({ children }) => {
   };
 
   const loginUser = async (email, password) => {
-    return await signInWithEmailAndPassword(auth, email, password);
+    await setPersistence(auth, browserLocalPersistence); // Postavlja dugotrajnu sesiju
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+
+    // Dobij Firebase ID token
+    const idToken = await user.getIdToken();
+
+    // Čuvaj dodatni JWT u localStorage
+    localStorage.setItem("userToken", idToken);
+    localStorage.setItem("userTokenTime", new Date().getTime().toString());
   };
 
   const signInWithGoogle = async () => {
@@ -38,6 +53,23 @@ export const AuthProvide = ({ children }) => {
   };
 
   const logout = () => {
+    // Proverite tip korisnika (možete koristiti razne metode, npr. postavljanje role u localStorage)
+    const userToken = localStorage.getItem("userToken");
+    const adminToken = localStorage.getItem("token");
+
+    // Ako je korisnik ulogovan kao 'user', uklonite njegov token
+    if (userToken) {
+      localStorage.removeItem("userToken");
+      localStorage.removeItem("userTokenTime");
+    }
+
+    // Ako je korisnik ulogovan kao 'admin', uklonite njegov token
+    if (adminToken) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("tokenTime");
+    }
+
+    // Odjava sa Firebase autentifikacije
     return signOut(auth);
   };
 
@@ -96,10 +128,18 @@ export const AuthProvide = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setLoading(false);
-      setCurrentUser(user);
+      if (user) {
+        setCurrentUser(user); // Ažurirajte trenutno stanje korisnika
+        const idToken = await user.getIdToken(true); // Osvežavanje tokena
+        localStorage.setItem("userToken", idToken); // Čuvajte token u localStorage
+      } else {
+        setCurrentUser(null);
+        localStorage.removeItem("userToken"); // Uklonite token ako korisnik nije prijavljen
+      }
     });
+
     return () => unsubscribe();
   }, []);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,33 @@ export const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const token = localStorage.getItem("userToken");
+      const tokenTime = localStorage.getItem("userTokenTime");
+
+      if (token && tokenTime) {
+        const currentTime = new Date().getTime();
+        const timeDiff = currentTime - tokenTime;
+
+        if (timeDiff >= 60 * 60 * 1000) {
+          // Token istekao posle 1h
+          localStorage.removeItem("userToken");
+          localStorage.removeItem("userTokenTime");
+          Swal.fire({
+            icon: "error",
+            title: "Session Expired",
+            text: "Token has expired, please log in again",
+          });
+          navigate("/login");
+        }
+      }
+    }, 5000); // Proveravaj svakih 5 sekundi (ili bilo koji interval po tvom izboru)
+
+    // Očisti interval kada komponenta bude unmountovana
+    return () => clearInterval(intervalId);
+  }, [navigate]);
+
   const onSubmit = async (data) => {
     try {
       await loginUser(data.email, data.password);

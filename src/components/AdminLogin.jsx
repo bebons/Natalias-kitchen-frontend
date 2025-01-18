@@ -15,25 +15,30 @@ const AdminLogin = () => {
   } = useForm();
 
   useEffect(() => {
-    // Check for token expiration on component mount
-    const token = localStorage.getItem("token");
-    const tokenTime = localStorage.getItem("tokenTime");
+    const intervalId = setInterval(() => {
+      const token = localStorage.getItem("token");
+      const tokenTime = localStorage.getItem("tokenTime");
 
-    if (token && tokenTime) {
-      const currentTime = new Date().getTime();
-      const timeDiff = currentTime - tokenTime;
-      if (timeDiff >= 60 * 60 * 1000) {
-        // 1 hour
-        localStorage.removeItem("token");
-        localStorage.removeItem("tokenTime");
-        Swal.fire({
-          icon: "error",
-          title: "Session Expired",
-          text: "Token has been expired, please log in again",
-        });
-        navigate("/admin");
+      if (token && tokenTime) {
+        const currentTime = new Date().getTime();
+        const timeDiff = currentTime - tokenTime;
+
+        if (timeDiff >= 60 * 60 * 1000) {
+          // Token istekao posle 1h
+          localStorage.removeItem("userToken");
+          localStorage.removeItem("userTokenTime");
+          Swal.fire({
+            icon: "error",
+            title: "Session Expired",
+            text: "Token has expired, please log in again",
+          });
+          navigate("/admin");
+        }
       }
-    }
+    }, 5000); // Proveravaj svakih 5 sekundi (ili bilo koji interval po tvom izboru)
+
+    // Očisti interval kada komponenta bude unmountovana
+    return () => clearInterval(intervalId);
   }, [navigate]);
 
   const onSubmit = async (data) => {

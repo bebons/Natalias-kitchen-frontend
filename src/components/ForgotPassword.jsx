@@ -16,8 +16,7 @@ const ForgotPassword = () => {
   const onSubmit = async (data) => {
     try {
       const email = data.email;
-      const url =
-        "https://natalias-kitchen-backend.vercel.app/api/auth/check-user";
+      const url = "http://localhost:5000/api/auth/check-user";
       await axios.post(url, { email });
 
       await resetPassword(email);

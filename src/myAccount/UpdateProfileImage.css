@@ -1,0 +1,118 @@
+.update-profile-image {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.update-profile-image h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.update-profile-image form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.update-profile-image input[type="file"] {
+  margin: 15px 0;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 80%;
+}
+
+.update-profile-image input[type="file"]:hover {
+  border-color: #007bff;
+}
+
+.update-profile-image button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-profile-image button:hover {
+  background-color: #0056b3;
+}
+
+.update-profile-image button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.update-profile-image p {
+  color: red;
+  font-size: 14px;
+}
+
+.update-profile-image .success-message {
+  color: green;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.image-preview {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Centriraj sliku */
+}
+
+.image-preview img {
+  border-radius: 50%; /* Čini sliku okruglom */
+  width: 150px; /* Postavite fiksnu širinu */
+  height: 150px; /* Postavite fiksnu visinu */
+  object-fit: cover; /* Prilagodite sliku da se uklopi u okvir */
+  border: 2px solid #ccc; /* Dodajte ivicu za bolji izgled */
+}
+/* Stilizujte kontejner za input */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 200px;
+}
+
+/* Sakrijte originalni input element za fajl */
+input[type="file"] {
+  display: none; /* Skriva originalni input */
+}
+
+/* Prilagođeni dugme za biranje slike */
+.input-container label {
+  display: inline-block;
+  background-color: darkblue; /* Zelena boja */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.input-container label:hover {
+  background-color: gray; /* Tamnija zelena kada se pređe mišem */
+}
+
+/* Prikazivanje naziva izabrane slike */
+.file-name {
+  font-size: 14px;
+  color: #555;
+  word-wrap: break-word;
+  text-align: center;
+}

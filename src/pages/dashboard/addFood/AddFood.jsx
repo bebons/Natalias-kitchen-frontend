@@ -50,12 +50,13 @@ export const AddFood = () => {
       // Upload the image
       const formData = new FormData();
       formData.append("image", imageFile);
-
+      const token = localStorage.getItem("token");
       const uploadResponse = await axios.post(
         `${getBaseUrl()}/api/upload`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
+          Authorization: `Bearer ${token}`, // Dodaj token za autentifikaciju
         }
       );
 

@@ -1,0 +1,17 @@
+/* MessagesDisplay.module.css */
+.statusPending {
+  color: #ffcc00; /* Žuta boja za pending */
+}
+
+.statusSent {
+  color: white; /* Zeleni tick za sent */
+}
+
+.statusDelivered {
+  color: white; /* Plavi tick za delivered */
+}
+
+.statusRead {
+  font-weight: bold;
+  color: purple; /* Zeleni tick za sent */
+}

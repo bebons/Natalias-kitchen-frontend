@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import { useForm } from "react-hook-form";
 
 export const VerifyEmail = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, logout } = useAuth();
   const { token } = useParams();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
@@ -24,7 +24,7 @@ export const VerifyEmail = () => {
     const verifyUserEmail = async () => {
       try {
         const response = await axios.get(
-          `https://natalias-kitchen-backend.vercel.app/api/auth/verify/${token}`
+          `http://localhost:5000/api/auth/verify/${token}`
         );
         setEmail(response.data.email);
 
@@ -61,19 +61,21 @@ export const VerifyEmail = () => {
         return;
       }
       await axios.post(
-        `https://natalias-kitchen-backend.vercel.app/api/auth/finish-registration/${token}`
+        `http://localhost:5000/api/auth/finish-registration/${token}`
       );
 
       await registerUser(email, data.password);
 
-      Swal.fire({
+      await Swal.fire({
         icon: "success",
         title: "Account Created",
         text: "Your account has been created successfully.",
         timer: 2000,
         showConfirmButton: false,
       });
-      navigate("/");
+
+      logout();
+      navigate("/login");
     } catch (err) {
       setMessage("Failed to register.");
       console.error("Error during registration:", err);

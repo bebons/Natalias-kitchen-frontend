@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { HiViewGridAdd } from "react-icons/hi";
 import { MdOutlineManageHistory } from "react-icons/md";
+import { FaCommentAlt } from "react-icons/fa";
+import { FaComment } from "react-icons/fa6";
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
@@ -36,6 +38,13 @@ const DashboardLayout = () => {
               <span className="sr-only">Manage Food</span>
               <MdOutlineManageHistory className="h-6 w-6" />
             </Link>
+            <Link
+              to="/dashboard/admin-chat"
+              className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
+            >
+              <span className="sr-only">Chat with users</span>
+              <FaComment className="h-6 w-6" />
+            </Link>
             <button
               onClick={handleLogout}
               className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
@@ -64,7 +73,6 @@ const DashboardLayout = () => {
           <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
             <div className="mr-6">
               <h1 className="text-4xl font-semibold mb-2">Dashboard</h1>
-              <h2 className="text-gray-600 ml-0.5">Food Inventory</h2>
             </div>
           </div>
           <Outlet />

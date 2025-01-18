@@ -5,13 +5,12 @@ import { Login } from "../components/Login";
 import { Register } from "../components/Register";
 import { CartPage } from "../pages/food/CartPage";
 import { CheckoutPage } from "../pages/food/CheckoutPage";
-import { OrderPage } from "../pages/food/OrderPage";
+import { OrderPage } from "../myAccount/OrderPage";
 import AdminRoute from "./AdminRoute";
 import { AddFood } from "../pages/dashboard/addFood/AddFood";
 import ManageFood from "../pages/dashboard/manageFood/ManageFood";
 import { Dashboard } from "../pages/dashboard/Dashboard";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
-import { FoodCard } from "../pages/food/FoodCard";
 import PrivateRoute from "./PrivateRoute";
 import AdminLogin from "../components/AdminLogin";
 import { UpdateFood } from "../pages/dashboard/editFood/UpdateFood";
@@ -20,6 +19,16 @@ import { VerifyEmail } from "../components/VerifyEmail";
 import ForgotPassword from "../components/ForgotPassword";
 import AccountSettings from "../myAccount/AccountSettings";
 import UpdatePassword from "../myAccount/UpdatePassword";
+import GroupChat from "../chat/GroupChat";
+import UpdateName from "../myAccount/UpdateName";
+import UpdateProfileImage from "../myAccount/UpdateProfileImage";
+import EditAccount from "../myAccount/EditAccount";
+import Inbox from "../chat/Inbox";
+import UserProfile from "../chat/UserProfile";
+import MyProfile from "../myAccount/MyProfile";
+import FriendRequests from "../chat/FriendRequests";
+import MyFriends from "../myAccount/MyFriends";
+import UserChat from "../chat/UserChat";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +68,46 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/user-chat",
+        element: (
+          <PrivateRoute>
+            <Inbox />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/group-chat",
+        element: (
+          <PrivateRoute>
+            <GroupChat />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-friends",
+        element: (
+          <PrivateRoute>
+            <MyFriends />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/direct-messages",
+        element: (
+          <PrivateRoute>
+            <UserChat />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/friend-requests",
+        element: (
+          <PrivateRoute>
+            <FriendRequests />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/food/:id",
         element: <CompleteFood />,
       },
@@ -83,6 +132,54 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UpdatePassword />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-name",
+        element: (
+          <PrivateRoute>
+            <UpdateName />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-image",
+        element: (
+          <PrivateRoute>
+            <UpdateProfileImage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/edit-account",
+        element: (
+          <PrivateRoute>
+            <EditAccount />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/group-chat",
+        element: (
+          <PrivateRoute>
+            <GroupChat />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/searched-user",
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
           </PrivateRoute>
         ),
       },
@@ -132,6 +229,15 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+
+      // {
+      //   path: "find-people",
+      //   element: (
+      //     <AdminRoute>
+      //       < />
+      //     </AdminRoute>
+      //   ),
+      // },
     ],
   },
 ]);

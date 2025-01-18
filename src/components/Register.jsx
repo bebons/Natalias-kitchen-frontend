@@ -19,10 +19,10 @@ export const Register = () => {
   const onSubmit = async (data) => {
     try {
       // Register the user
-      const url =
-        "https://natalias-kitchen-backend.vercel.app/api/auth/register";
-      const response = await axios.post(url, {
-        email: data.email, // Ensure this matches the expected field name
+      const url = "http://localhost:5000/api/auth/register";
+      await axios.post(url, {
+        email: data.email,
+        name: data.name, // Ensure this matches the expected field name
       });
       Swal.fire({
         icon: "info",
@@ -78,7 +78,23 @@ export const Register = () => {
               type="email"
               name="email"
               id="email"
-              placeholder="Email Address"
+              placeholder="monkey@gmail.com"
+              className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="name"
+            >
+              Name
+            </label>
+            <input
+              {...register("name", { required: true })}
+              type="name"
+              name="name"
+              id="name"
+              placeholder="jo_orelj"
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
             />
           </div>

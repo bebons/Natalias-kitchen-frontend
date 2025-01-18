@@ -108,13 +108,17 @@ export const UpdateFood = () => {
 
       // If image is changed, upload new image
       if (imageFile) {
+        const token = localStorage.getItem("token");
         const formData = new FormData();
         formData.append("image", imageFile);
         const uploadResponse = await axios.post(
           `${getBaseUrl()}/api/upload`,
           formData,
           {
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`, // Dodaj token za autentifikaciju
+            },
           }
         );
         imageUrl = uploadResponse.data.imageUrl;

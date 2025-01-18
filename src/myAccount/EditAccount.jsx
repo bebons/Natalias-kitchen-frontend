@@ -3,8 +3,8 @@ import Swal from "sweetalert2";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
-const AccountSettings = () => {
-  const { deleteAccount, reauthenticateUser, currentUser } = useAuth();
+const EditAccount = () => {
+  const { deleteAccount, reauthenticateUser } = useAuth();
 
   const handleDeactivateAccount = async () => {
     const url = `http://localhost:5000/api/auth/delete-user`;
@@ -84,40 +84,42 @@ const AccountSettings = () => {
 
   return (
     <div className="h-full flex flex-col items-center p-6">
-      <h2 className="text-2xl font-semibold mb-6">My Account </h2>
+      <h2 className="text-2xl font-semibold mb-6">Edit Account Settings</h2>
 
-      {/* Options Navigation */}
+      {/* Opcije za promene */}
       <div className="w-full max-w-lg mb-6 p-6 bg-white shadow-md rounded">
         <div className="space-y-4">
-          {/* Prva dva linka */}
           <Link
-            to="/orders"
+            to="/update-name"
             className="block w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded text-center"
           >
-            Orders
+            Change Name
           </Link>
+
           <Link
-            to="/my-profile"
+            to="/update-password"
             className="block w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded text-center"
           >
-            Profile
+            Change Password
           </Link>
+
           <Link
-            to="/my-friends"
+            to="/update-image"
             className="block w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded text-center"
           >
-            Friends
+            Change Profile Image
           </Link>
-          <Link
-            to="/edit-account"
-            className="block w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded text-center"
+
+          <button
+            onClick={handleDeactivateAccount}
+            className="w-full bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded"
           >
-            Edit Account
-          </Link>
+            Deactivate Account
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default AccountSettings;
+export default EditAccount;
