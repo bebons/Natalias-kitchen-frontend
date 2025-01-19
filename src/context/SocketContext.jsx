@@ -58,6 +58,7 @@ export const SocketProvider = ({ children }) => {
     socketRef.current = io("https://natalias-kitchen-backend.vercel.app", {
       query: { userId }, // Send userId to the server
       auth: { token },
+      transports: ["websocket"], // Use WebSocket transport only
     });
 
     // Set socketConnected to true once socket is successfully connected
