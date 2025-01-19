@@ -72,6 +72,7 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
+    console.log(socket);
     if (!token) return;
     const fetchUnreadNotifications = async () => {
       try {
